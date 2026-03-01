@@ -9,8 +9,10 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <!-- Hoja de Estilos (Versión de Producción) -->
-  <link rel="stylesheet" href="style.css?v=1.0">
+
+  <script>
+    document.write('<link rel="stylesheet" href="style.css?t=' + Date.now() + '">');
+  </script>
 
   <!-- GSAP y ScrollTrigger -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
@@ -22,7 +24,7 @@
   <!-- Preloader de Video Animado -->
   <div id="loader-wrapper">
     <video autoplay muted playsinline id="loader-video">
-      <source src="../videolandipage.mp4" type="video/mp4">
+      <source src="./videolandipage.mp4" type="video/mp4">
       Tu navegador no soporta videos.
     </video>
   </div>
@@ -88,7 +90,7 @@
       <div class="collage-item" style="top: 2%; left: 3%; --r: -3deg;">
         <div class="torn-paper">
           <!-- Izquierda - Arriba -->
-          <img src="../app/prescolar.png" alt="Preescolar Montessori">
+          <img src="./prescolar.png" alt="Preescolar Montessori">
         </div>
       </div>
 
@@ -190,7 +192,7 @@
       </div>
       <div class="premium-image-wrapper">
         <!-- Imagen fotorealista de un elemento educativo en fondo oscuro -->
-        <img src="../app/logoLandi-removebg-preview.png" alt="Material Premium Montessori" class="premium-img">
+        <img src="./logoLandi-removebg-preview.png" alt="Material Premium Montessori" class="premium-img">
       </div>
     </div>
   </section>
@@ -199,7 +201,7 @@
   <section class="location-section">
     <!-- Video Background -->
     <video autoplay loop muted playsinline class="location-video-bg">
-      <source src="../app/videoss.mp4" type="video/mp4">
+      <source src="./videoss.mp4" type="video/mp4">
     </video>
 
     <!-- Overlay Oscuro para lectura -->
