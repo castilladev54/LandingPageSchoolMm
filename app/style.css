@@ -686,7 +686,7 @@ body:not(.loaded) {
 /* Responsive */
 @media (max-width: 900px) {
     .premium-header {
-
+        flex-direction: column;
         align-items: flex-start;
         text-align: left;
     }
@@ -695,10 +695,7 @@ body:not(.loaded) {
         text-align: left;
     }
 
-    .premium-card {
-        flex-direction: column-reverse;
-        /* Imagen arriba en móvil */
-    }
+
 
     .premium-specs {
         padding: 2.5rem;
