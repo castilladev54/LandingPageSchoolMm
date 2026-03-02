@@ -14,6 +14,7 @@
   <!-- GSAP y ScrollTrigger -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+  <script src="script.js" defer></script>
   <style>
     #loader-wrapper {
       position: fixed;
@@ -224,7 +225,7 @@
   <!-- Sección Ubicación con Fondo de Video -->
   <section class="location-section">
     <!-- Video Background -->
-    <video autoplay loop muted playsinline class="location-video-bg">
+    <video preload="none" autoplay loop muted playsinline class="location-video-bg">
       <source src="./videoss.mp4" type="video/mp4">
     </video>
 
@@ -354,7 +355,7 @@
 
 
 
-  <script src="script.js"></script>
+
 </body>
 
 </html>
