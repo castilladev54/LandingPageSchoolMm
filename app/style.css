@@ -32,16 +32,13 @@ body:not(.loaded) {
 .hero-container {
   position: relative;
   min-height: 100dvh;
-  width: 100vw;
+  width: 100%;
+  /* Cambiado de 100vw para evitar saltos de scroll */
 
-  overflow-y: auto;
-  /* Habilita scroll vertical (solicitado por el usuario) */
-  overflow-x: hidden;
+  /* Eliminado overflow-y: auto; para evitar doble scroll en la página */
   display: flex;
   align-items: center;
-  /* Alineación vertical */
   justify-content: flex-start;
-  /* Alineado a la izquierda */
   padding-left: 8vw;
   /* Espacio negativo a la izquierda */
 }
@@ -91,11 +88,13 @@ body:not(.loaded) {
 .hero-text-back {
   position: absolute;
   width: 100%;
+  max-width: 1800px;
+  /* Limitamos el área de los textos decorativos en 4k */
   height: 100%;
   top: 0;
-  left: 0;
+  left: 50%;
+  transform: translateX(-50%);
   z-index: 5;
-  /* Por encima del fondo fotográfico */
   pointer-events: none;
 }
 
@@ -135,10 +134,21 @@ body:not(.loaded) {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  max-width: 600px;
+  max-width: 650px;
   /* Limitamos ancho para no tapar la foto */
-  padding-top: 10vh;
+  padding-top: 5vh;
   /* Ajuste visual vertical */
+}
+
+/* Ajustes para pantallas ultra-wide */
+@media (min-width: 1600px) {
+  .hero-container {
+    padding-left: 12vw;
+  }
+
+  .hero-content-front {
+    max-width: 750px;
+  }
 }
 
 /* Textos */
@@ -263,7 +273,7 @@ body:not(.loaded) {
     min-height: 100vh;
     /* Obliga a la sección a medir al menos la altura de la pantalla */
     position: relative;
-    overflow: hidden;/
+    overflow: hidden;
     /* Bajamos el contenido en móvil si la foto queda arriba */
   }
 
@@ -346,7 +356,9 @@ body:not(.loaded) {
   width: 100%;
   max-width: 1400px;
   flex-grow: 1;
-  min-height: 900px;
+  min-height: 1800px;
+  /* Duplicamos la altura para repartir mejor las 8 fotos */
+  margin-top: 2rem;
 }
 
 /* Tipografía Flotante */
@@ -354,24 +366,27 @@ body:not(.loaded) {
   position: absolute;
   font-family: 'Quicksand', sans-serif;
   font-weight: 800;
-  font-size: clamp(2.5rem, 5vw, 4rem);
-  color: rgba(62, 84, 172, 0.08);
-  /* Sutil color azul/morado */
+  font-size: clamp(3rem, 10vw, 8rem);
+  /* Más grande para que funcione como textura */
+  color: rgba(62, 84, 172, 0.05);
+  /* Muy sutil, casi transparente */
   pointer-events: none;
-  /* No interfiere con las fotos */
   transform: rotate(var(--r));
-  z-index: 5;
+  z-index: 1;
+  /* Al fondo del collage */
   text-transform: uppercase;
-  letter-spacing: 5px;
+  letter-spacing: 15px;
+  /* Más espaciado para estilo premium */
+  white-space: nowrap;
 }
 
 /* Items del Collage (Posicionamiento estático para la estructura, dinámico vía inline styles) */
 .collage-item {
   position: absolute;
-  width: 280px;
+  width: 320px;
+  /* Un poco más grandes para que se aprecien mejor */
   z-index: 10;
   cursor: pointer;
-  /* Eliminamos 'transition: all' de aquí porque conflictúa con los cálculos y animaciones de GSAP */
 }
 
 .collage-item.center-item {
@@ -394,10 +409,9 @@ body:not(.loaded) {
 /* Estética de Recorte de Periódico / Papel Rasgado */
 .torn-paper {
   background-color: #FFFFFF;
-  /* Cambiado a blanco absoluto para que las imágenes transparentes (PNG) no se vean sucias */
-  padding: 10px 10px 18px 10px;
-  /* Estilo Polaroid */
-  box-shadow: 3px 8px 20px rgba(0, 0, 0, 0.12);
+  padding: 12px 12px 35px 12px;
+  /* Aumentamos el margen inferior para el look Polaroid */
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
 
   /* Movemos la transición y rotación a este elemento para que GSAP pueda animar libremente el parent .collage-item */
   transform: rotate(var(--r));
@@ -501,13 +515,13 @@ body:not(.loaded) {
   .el-futuro {
     top: 8%;
     /* Lo bajamos un poco para que no lo corte el notch o el navegador */
-    left: 2%;
+    left: 9%;
   }
 
   .se-construye {
     bottom: 71%;
     /* Lo subimos para que no se pierda detrás del gradiente inferior */
-    right: 2%;
+    right: -30%;
   }
 
   /* Refuerza el contraste del texto principal sobre el fondo */
