@@ -64,6 +64,30 @@ window.addEventListener("load", () => {
 // 5. Animaciones de Scroll (Efectos de Galería y Parallax)
 document.addEventListener("DOMContentLoaded", () => {
 
+  const video = document.querySelector(".location-video-bg");
+  const source = video.querySelector("source");
+
+  const videoObserver = new IntersectionObserver((entries, observer) => {
+    entries.forEach(entry => {
+      // Cuando la sección está al 10% de entrar en pantalla
+      if (entry.isIntersecting) {
+        // Pasamos el data-src al src real para iniciar la descarga
+        source.src = source.dataset.src;
+        video.load(); // Fuerza al navegador a leer el nuevo src
+
+        // Intentamos reproducir (manejando la promesa para evitar errores de navegador)
+        video.play().catch(error => console.log("Autoplay bloqueado hasta interacción"));
+
+        // Dejamos de observar para ahorrar memoria
+        observer.unobserve(entry.target);
+      }
+    });
+  }, {
+    rootMargin: "0px 0px 300px 0px" // Empieza a cargar 300px antes de llegar
+  });
+
+  videoObserver.observe(video);
+
   // --- Parallax del Fondo Hero ---
   gsap.to(".hero-background", {
     yPercent: 20,
