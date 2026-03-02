@@ -686,7 +686,7 @@ body:not(.loaded) {
 /* Responsive */
 @media (max-width: 900px) {
     .premium-header {
-        flex-direction: column;
+
         align-items: flex-start;
         text-align: left;
     }
