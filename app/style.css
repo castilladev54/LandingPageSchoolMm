@@ -31,16 +31,17 @@ body:not(.loaded) {
 /* Contenedor Principal Hero */
 .hero-container {
   position: relative;
+  min-height: 100vh;
+  /* Fallback para navegadores antiguos de TV */
   min-height: 100dvh;
   width: 100%;
-  /* Cambiado de 100vw para evitar saltos de scroll */
-
-  /* Eliminado overflow-y: auto; para evitar doble scroll en la página */
+  overflow: hidden;
   display: flex;
   align-items: center;
   justify-content: flex-start;
   padding-left: 8vw;
-  /* Espacio negativo a la izquierda */
+  padding-right: 8vw;
+  /* Aseguramos margen en ambos lados */
 }
 
 /* Efecto de difuminado hacia gallery-section */
@@ -74,14 +75,18 @@ body:not(.loaded) {
 
 /* Añadimos un velo (overlay) sutil a la imagen para oscurecer el fondo */
 .hero-background::before {
+  background: linear-gradient(90deg,
+      rgba(15, 10, 30, 0.85) 0%,
+      rgba(15, 10, 30, 0.4) 50%,
+      rgba(15, 10, 30, 0.2) 80%,
+      transparent 100%);
+  z-index: 2;
   content: "";
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background: linear-gradient(90deg, rgba(15, 10, 30, 0.75) 0%, rgba(15, 10, 30, 0.25) 60%, transparent 100%);
-  z-index: 2;
 }
 
 /* Capa 2: Texto Gigante de Fondo (Antigravedad) */
@@ -100,17 +105,15 @@ body:not(.loaded) {
 
 .giant-text {
   position: absolute;
-  font-size: clamp(8rem, 15vw, 25rem);
+  font-size: clamp(6rem, 12vw, 18rem);
+  /* Reducimos el tamaño máximo para que no sea tan invasivo */
   font-weight: 800;
-  /* Extra Bold */
-  color: rgba(255, 255, 255, 0.4);
-  /* Texto claro semi-transparente que combina con la iluminación */
+  color: rgba(255, 255, 255, 0.25);
+  /* Bajamos opacidad base por si el blend-mode falla */
   text-transform: uppercase;
   line-height: 0.8;
   mix-blend-mode: overlay;
-  /* Un blend-mode para dar un efecto premium fotográfico */
   opacity: 0;
-  /* Comenzará oculto para GSAP */
 }
 
 .el-futuro {
@@ -140,16 +143,6 @@ body:not(.loaded) {
   /* Ajuste visual vertical */
 }
 
-/* Ajustes para pantallas ultra-wide */
-@media (min-width: 1600px) {
-  .hero-container {
-    padding-left: 12vw;
-  }
-
-  .hero-content-front {
-    max-width: 750px;
-  }
-}
 
 /* Textos */
 .brand-text {
@@ -256,9 +249,44 @@ body:not(.loaded) {
   height: 35px;
 }
 
-.whatsapp-sticky:hover {
-  background-color: #1EBE55;
-  transform: scale(1.1) rotate(5deg);
+/* --- Ajustes Ultra-Wide / Smart TV (4K y Monitores grandes) --- */
+@media (min-width: 1600px) {
+  .hero-container {
+    padding-left: 12vw;
+    align-items: center;
+  }
+
+  .hero-content-front {
+    max-width: 850px;
+    /* Prevalece el ajuste más específico para TV */
+    padding-top: 0;
+    /* Centrado vertical real */
+  }
+
+  .brand-text .main-title {
+    font-size: 6.5rem;
+    /* Tamaño sólido en 4k */
+  }
+
+  .brand-text .slogan {
+    font-size: 1.5rem;
+    max-width: 80%;
+  }
+
+  .giant-text {
+    font-size: 20rem;
+    /* Límite para evitar que explote en pantallas gigantes */
+  }
+
+  .el-futuro {
+    top: 15%;
+    left: 5%;
+  }
+
+  .se-construye {
+    bottom: 15%;
+    right: 5%;
+  }
 }
 
 /* --- MEDIA QUERIES (Mobile) --- */
